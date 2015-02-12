@@ -3,11 +3,14 @@
 
 
   <table>
-    <?php foreach ($this->categories as $category) : ?>
+    <?php //foreach ($this->categories as $category) : ?>
       <tr>
-        <td><?php echo $category; ?></td>
+        <td><?php //echo $category; ?></td>
       </tr>
 
-    <?php endforeach; ?>
+    <?php //endforeach; ?>
   </table>
+
+
+  <?php echo($this->category) ; ?>
 </div>
