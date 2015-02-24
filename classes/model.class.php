@@ -23,8 +23,10 @@
       $q->bindParam(":arg", $arg);
       $q->execute();
       return $q->fetchAll(PDO::FETCH_ASSOC);
-
     }
+
+    abstract function create();
+    abstract function update();
   }
 
 ?>

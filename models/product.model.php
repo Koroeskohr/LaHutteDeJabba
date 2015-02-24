@@ -1,7 +1,7 @@
 <?php 
   require_once realpath("classes/model.class.php");
   require_once realpath("db.inc.php");
-  require_once realpath("vendor/html_purifier/HTMLPurifier.auto.php");
+  require_once realpath("helpers.php");
 
   class Product extends Model {
     protected $tableName;

@@ -1,6 +1,8 @@
 <?php 
   require_once realpath("classes/model.class.php");
   require_once realpath("db.inc.php");
+  require_once realpath("helpers.php");
+
 
   class Category extends Model {
     protected $tableName;
