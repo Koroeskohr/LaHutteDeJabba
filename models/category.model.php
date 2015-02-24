@@ -3,23 +3,27 @@
   require_once realpath("db.inc.php");
 
   class Category extends Model {
-    private $tableName;
-    protected $db;
+    protected $tableName;
+    protected static $db;
 
     public function Category($db) {
       $this->tableName = "Categories";
-      $this->db = $db;
+      static::$db = $db;
     }
 
-    public function all(){
-      return $this->db->query("SELECT * FROM ".$this->tableName);
-    }
-
-    public function getById($id) {
-      $q = $this->db->prepare("SELECT * FROM ".$this->tableName." WHERE id=:id");
+    public function getProducts($id) {
+      $q = static::$db->prepare('SELECT * FROM '.$this->tableName.' WHERE category_id=:id;');
       $q->bindParam(":id", $id, PDO::PARAM_INT);
       $q->execute();
-      return $q->fetch()[1];
+      return $q->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function create($name){
+      $q = static::$db->prepare("INSERT INTO $this->tableName (name) VALUES (:name);");
+      $q->bindParam(":name", $name);
+      if ($q->execute()) {
+        echo "insert successful"; //debug
+      }
     }
   }
 

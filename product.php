@@ -9,10 +9,18 @@
     echo "Error : ".$e->getMessage();
   }
 
+
   /* Placer le code de récupération de données ici */
   $products = new Product($db);
-  $products_by_category = $products->getByCategory(1);
-  $t->products = $products_by_category;
+
+  if(isset($_GET["id"])) {
+    $t->id = $_GET["id"];
+    $p = $products->getById($t->id);
+  }
+  else {
+    header("Location:index.php");
+  }
+  $t->product = $p;
 
 
   /* Fin du code de récupération des données */

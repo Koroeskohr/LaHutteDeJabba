@@ -8,7 +8,7 @@
   }
   //echo $this->user["address"]; ?>
   </p>
-  <p class="email"><?php echo $this->user["email"]; ?></p>
+  <p class="email"><?php echo $this->debug["email"][0]["name"]; ?></p>
 
   <?php 
   /*

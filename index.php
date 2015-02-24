@@ -3,7 +3,7 @@
   require_once("classes/Templater.class.php");
   
   try {
-    $t = new Templater("");// A REMPLIR SELON LA PAGE
+    $t = new Templater("index");// A REMPLIR SELON LA PAGE
   } catch (Exception $e) {
     echo "Error : ".$e->getMessage();
   }

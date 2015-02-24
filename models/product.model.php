@@ -1,39 +1,36 @@
 <?php 
   require_once realpath("classes/model.class.php");
   require_once realpath("db.inc.php");
+  require_once realpath("vendor/html_purifier/HTMLPurifier.auto.php");
 
   class Product extends Model {
-    private $tableName;
-    protected $db;
+    protected $tableName;
+    protected static $db;
 
     public function Product($db) {
       $this->tableName = "Products";
-      $this->db = $db;
-    }
-
-    public function all(){
-      return $this->db->query("SELECT * FROM ".$this->tableName);
-    }
-
-    public function getById($id) {
-      $q = $this->db->prepare("SELECT * FROM ".$this->tableName."' WHERE id=:id;");
-      $q->bindParam(":id", $id, PDO::PARAM_INT);
-      $q->execute();
-      return $q->fetch()[1];
-    }
-
-    public function getByCategory($id) {
-      $q = $this->db->prepare('SELECT * FROM '.$this->tableName.' WHERE category_id=:id;');
-      $q->bindParam(":id", $id, PDO::PARAM_INT);
-      $q->execute();
-      return $q->fetchAll(PDO::FETCH_ASSOC);
+      static::$db = $db;
     }
 
     public function search($search){
-      $q = $this->db->prepare('SELECT * FROM '.$this->tableName.' WHERE name LIKE %:search%;');
+      $q = static::$db->prepare('SELECT * FROM '.$this->tableName.' WHERE name LIKE %:search%;');
       $q->bindParam(":search", $search, PDO::PARAM_INT);
       $q->execute();
       return $q->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function create($name, $description, $category_id, $price, $amount = 0){
+      $q = static::$db->prepare("INSERT INTO $this->tableName (name, description, amount_available, price, category_id) VALUES (:name, :description, :amount, :price, :category_id);");
+      $a = array(
+        'name' => $name,
+        'description' => $description,
+        'category_id' => $category_id,
+        'amount_available' => $amount,
+        'price' => $price
+        );
+      if ($q->execute($a)) {
+        echo "insert successful"; //debug
+      }
     }
   }
 

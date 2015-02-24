@@ -10,18 +10,21 @@
   }
 
   /* Placer le code de récupération de données ici */
+  $user = new User($db);
+
   if(isset($_GET["id"])) {
     $t->id = $_GET["id"];
+    $t->debug["getbyid"] = $user->getBy("id",$t->id);
+
   }
   else {
     header("Location:index.php");
   }
   
 
-  $user = new User($db);
-  $t->debug["getbyid"] = $user->getBy("id",$t->id);
   $t->debug["getby_name"] = $user->getByName("Victor Viale");
-  
+  $t->debug["email"] = $user->getBy("email", "viale.victor@gmail.com");
+
   $t->allUsers = $user->all();
 
 
