@@ -3,11 +3,11 @@
 
   define("SALT", "Z3l1aQ0K");
 
-  function hash_passwd($password) {
+  function hash_passwd($password){
     return hash("sha256", SALT.$password);
   }
 
-  function purify_html($html) {
+  function purify($html) {
     $config = HTMLPurifier_Config::createDefault();
     $purifier = new HTMLPurifier($config);
     return $purifier->purify($html);

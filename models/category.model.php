@@ -22,7 +22,7 @@
 
     public function create($name){
       $q = static::$db->prepare("INSERT INTO $this->tableName (name) VALUES (:name);");
-      $q->bindParam(":name", $name);
+      $q->bindParam(":name", purify($name));
       if ($q->execute()) {
         echo "insert successful"; //debug
       }

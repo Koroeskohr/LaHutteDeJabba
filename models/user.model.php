@@ -20,10 +20,10 @@
     public function create($name, $address, $email, $password){
       $q = static::$db->prepare("INSERT INTO $this->tableName (name, address, email, password) VALUES (:name, :address, :email, :password);");
       $a = array(
-        'name' => $name,
-        'address' => $address,
-        'email' => $email,
-        'password' => hash_passwd($password)
+        'name' => purify($name),
+        'address' => purify($address),
+        'email' => purify($email),
+        'password' => hash_passwd($password);
         );
       if ($q->execute($a)) {
         echo "insert successful"; //debug

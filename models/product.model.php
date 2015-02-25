@@ -22,11 +22,11 @@
     public function create($name, $description, $category_id, $price, $amount = 0){
       $q = static::$db->prepare("INSERT INTO $this->tableName (name, description, amount_available, price, category_id) VALUES (:name, :description, :amount, :price, :category_id);");
       $a = array(
-        'name' => $name,
-        'description' => $description,
-        'category_id' => $category_id,
-        'amount_available' => $amount,
-        'price' => $price
+        'name' => purify($name),
+        'description' => purify($description),
+        'category_id' => purify($category_id),
+        'amount_available' => purify($amount),
+        'price' => purify($price)
         );
       if ($q->execute($a)) {
         echo "insert successful"; //debug

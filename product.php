@@ -17,6 +17,19 @@
     $t->id = $_GET["id"];
     $p = $products->getById($t->id);
   }
+  elseif (isset($_POST["_method"])) {
+    $method = $_POST["_method"];
+
+    switch ($method) {
+      case 'create':
+        $products->create($_POST["name"], $_POST["description"], $_POST["category_id"], $_POST["price"], $_POST["amount"]);
+        break;
+      
+      default:
+        # code...
+        break;
+    }
+  }
   else {
     header("Location:index.php");
   }
