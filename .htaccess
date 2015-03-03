@@ -2,5 +2,6 @@ RewriteEngine on
 RewriteRule ^(.*)/([0-9]+)$ /$1.php?id=$2 [L]
 RewriteRule ^(.*)/(.*)$ /$1.php?$2 [L]
 
+ErrorDocument 404 "Page non trouvee :/"
 
 

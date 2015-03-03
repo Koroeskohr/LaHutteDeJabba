@@ -31,9 +31,7 @@
 
     $t->category = $category->getById($t->id);
 
-  } else {
-    header("Location:index.php");
-  }
+  } 
 
 
   /* Fin du code de récupération des données */

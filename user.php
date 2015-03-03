@@ -17,10 +17,6 @@
     $t->debug["getbyid"] = $user->getBy("id",$t->id);
 
   }
-  else {
-    header("Location:index.php");
-  }
-  
 
   $t->debug["getby_name"] = $user->getByName("Victor Viale");
   $t->debug["email"] = $user->getBy("email", "viale.victor@gmail.com");

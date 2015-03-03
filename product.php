@@ -14,7 +14,7 @@
   $products = new Product($db);
 
   if(isset($_GET["id"])) {
-    $t->setTemplate("product");
+    $t->setTemplate("products/product");
     $t->id = $_GET["id"];
     $p = $products->getById($t->id);
   }
@@ -31,9 +31,7 @@
         break;
     }
   }
-  else {
-    header("Location:index.php");
-  }
+  
   $t->product = $p;
 
 
