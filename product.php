@@ -14,6 +14,7 @@
   $products = new Product($db);
 
   if(isset($_GET["id"])) {
+    $t->setTemplate("product");
     $t->id = $_GET["id"];
     $p = $products->getById($t->id);
   }
