@@ -13,16 +13,24 @@
     public function getById($id) {
       $q = static::$db->prepare("SELECT * FROM $this->tableName WHERE id=:id;");
       $q->bindParam(":id", $id, PDO::PARAM_INT);
-      $q->execute();
-      return $q->fetch(PDO::FETCH_ASSOC);
+      
+      if ($q->execute()) return $q->fetch(PDO::FETCH_ASSOC);
+      else return false;
     }
 
     public function getBy($columnName, $arg){
       if ($columnName == "id") return $this->getById($arg);
       $q = static::$db->prepare("SELECT * FROM $this->tableName WHERE $columnName=:arg;");
       $q->bindParam(":arg", $arg);
-      $q->execute();
-      return $q->fetchAll(PDO::FETCH_ASSOC);
+      if($q->execute()) return $q->fetchAll(PDO::FETCH_ASSOC);
+      else return false;
+    }
+
+    public function destroy($id){
+      $q = static::$db->prepare("DELETE FROM $this->tableName WHERE id=:id");
+      $q->bindParam(":id", $id);
+      if($q->execute()) return true;
+      else return false;
     }
   }
 

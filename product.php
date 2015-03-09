@@ -20,16 +20,14 @@
   } 
   elseif (isset($_GET["edit"])) {
     $t->setTemplate("products/edit");
-    echo "edit";
     if(isset($_GET["id"])){
-      echo " id";
       $t->id = purify($_GET["id"]);
     }
-  } 
+  }
   elseif(isset($_GET["id"])) {
     $t->setTemplate("products/product");
     $t->id = $_GET["id"];
-    $p = $products->getById($t->id);
+    $t->product = $products->getById($t->id);
   }
 
 
@@ -42,9 +40,11 @@
     switch ($method) {
       case 'create':
         $products->create($_POST["name"], $_POST["description"], $_POST["category_id"], $_POST["price"], $_POST["amount"]);
+        header("Location: index.php");
         break;
       case 'edit':
         $products->update($_POST["name"], $_POST["description"], $_POST["category_id"], $_POST["price"], $_POST["amount"], $_POST["id"]);
+        header("Location: index.php");
         break;
       default:
         break;

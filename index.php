@@ -9,7 +9,7 @@
   }
 
   /* Placer le code de récupération de données ici */
-
+  $t->setTemplate("index");
 
 
   /* Fin du code de récupération des données */

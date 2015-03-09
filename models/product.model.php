@@ -40,9 +40,6 @@
       $q = static::$db->prepare("UPDATE $this->tableName 
         SET name=:name, description=:description, Categories_id=:category_id, price=:price, amount_available=:amount
         WHERE id=:id;");
-      echo "UPDATE $this->tableName 
-        SET name=:name', description=':description', Categories_id=':category_id', price=':price', amount_available=':amount'
-        WHERE id=:id";
 
       $a = array(
         'name' => purify($name),
