@@ -14,7 +14,7 @@
 
     public function search($search){
       $q = static::$db->prepare('SELECT * FROM '.$this->tableName.' WHERE name LIKE %:search%;');
-      $q->bindParam(":search", $search, PDO::PARAM_INT);
+      $q->bindParam(":search", $search, PDO::PARAM_STRING);
       $q->execute();
       return $q->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -18,11 +18,20 @@
   if(isset($_GET["create"])) {
     $t->setTemplate("products/new");
   } 
-  elseif (isset($_GET["edit"])) {
+  elseif (isset($_GET["edit"]) && isset($_GET["id"])) {
     $t->setTemplate("products/edit");
-    if(isset($_GET["id"])){
-      $t->id = purify($_GET["id"]);
-    }
+    $t->id = purify($_GET["id"]);
+    if(!$t->product = $products->getById($t->id)) die("Ce produit n'existe pas :(");
+  }
+  elseif(isset($_GET["all"])) {
+    $t->setTemplate("products/all");
+    $t->products = $products->all();
+  }
+  elseif(isset($_GET["destroy"]) && isset($_GET["id"])){
+    $t->setTemplate("products/all");
+    $t->products = $products->all();
+    $products->destroy($_GET["id"]);
+
   }
   elseif(isset($_GET["id"])) {
     $t->setTemplate("products/product");
@@ -51,9 +60,6 @@
     }
   } 
   
-  //$t->setTemplate("index");
-
-
   /* Fin du code de récupération des données */
 
   
