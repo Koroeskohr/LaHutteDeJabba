@@ -10,7 +10,11 @@
   function purify($html) {
     $config = HTMLPurifier_Config::createDefault();
     $purifier = new HTMLPurifier($config);
+    echo "$html\n".$purifier->purify($html);
+
     return $purifier->purify($html);
+    
+
   }
 
 ?>
