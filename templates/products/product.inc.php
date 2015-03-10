@@ -2,10 +2,18 @@
   <h2>Product</h2>
     <br/>
     <div>
-      <h3><?php echo $this->product["name"]; ?></h3>
-      <p><?php echo $this->product["price"]; ?>€</p>
-      <p><?php echo $this->product["description"]; ?></p>
+      <h3>Name : <?php echo $this->product["name"]; ?></h3>
+      <p>Price : <?php echo $this->product["price"]; ?> €</p>
+      <p>Description : <?php echo $this->product["description"]; ?></p>
+      <p>Amount available : <?php echo $this->product["amount_available"]; ?></p>
     </div>
-    <?php //TODO ?>
+
+
+    <form action="review.php" method="post">
+      <h2>Add a review</h2>
+      <input type="hidden" name="product" value="<?php echo $this->product["id"]; ?>">
+      <input type="number" name="stars" min="0" max="5" value="5">
+      <input type="submit">
+    </form>
   
 </div>
