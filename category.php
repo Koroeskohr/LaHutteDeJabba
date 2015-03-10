@@ -13,6 +13,7 @@
 
   /* Placer le code de récupération de données ici */
   $categories = new Category($db);
+  $products = new Product($db);
 
   
   //routing
@@ -35,9 +36,11 @@
 
   }
   elseif(isset($_GET["id"])) {
-    $t->setTemplate("products/product");
+    $t->setTemplate("categories/category");
     $t->id = $_GET["id"];
-    $t->product = $products->getById($t->id);
+    $t->category = $categories->getById($_GET["id"]);
+    $t->products = $categories->getProducts($_GET["id"]);
+
   }
 
 

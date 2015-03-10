@@ -1,4 +1,4 @@
-<form action="../product.php" method="post">
+<form action="product.php" method="post">
   <input type="hidden" name="method" value="create" />
   <p>Name : <input type="text" name="name"></p>
   <p>Desc: <input type="text" name="description"></p>

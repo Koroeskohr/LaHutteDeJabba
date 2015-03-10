@@ -40,6 +40,7 @@ class Templater {
   private function errorHandler(){
     if (!is_file($this->templatePath.$this->currentModel.".inc.php")) 
       throw new Exception("Template doesnt exist");
+    else return true;
   }
 
 }

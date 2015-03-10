@@ -14,7 +14,7 @@
     }
 
     public function getProducts($id) {
-      $q = static::$db->prepare('SELECT * FROM '.$this->tableName.' WHERE category_id=:id;');
+      $q = static::$db->prepare("SELECT * FROM Products WHERE Categories_id=:id;");
       $q->bindParam(":id", $id, PDO::PARAM_INT);
       $q->execute();
       return $q->fetchAll(PDO::FETCH_ASSOC);

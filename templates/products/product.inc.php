@@ -6,5 +6,6 @@
       <p><?php echo $this->product["price"]; ?>€</p>
       <p><?php echo $this->product["description"]; ?></p>
     </div>
+    <?php //TODO ?>
   
 </div>
