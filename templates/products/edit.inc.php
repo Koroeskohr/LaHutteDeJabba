@@ -2,7 +2,7 @@
   <input type="hidden" name="id" value="<?php echo $this->id; ?>">
   <input type="hidden" name="method" value="edit">
   <p>Name : <input type="text" name="name" value="<?php echo $this->product["name"]; ?>"></p>
-  <p>Desc: <input type="text" name="description" value="<?php echo $this->product["description"]; ?>"></p>
+  <p>Desc: <textarea name="description"><?php echo $this->product["description"]; ?></textarea></p>
   <p>cat id : 
   <select name="category_id">
 <?php foreach ($this->categories as $key => $category) : ?>
