@@ -2,6 +2,7 @@
   include 'db.inc.php';
   require_once("classes/Templater.class.php");
   require_once("models/product.model.php");
+  require_once("models/category.model.php");
   require_once("helpers.php");
   
   try {
@@ -13,6 +14,7 @@
 
   /* Placer le code de récupération de données ici */
   $products = new Product($db);
+  $categories = new Category($db);
 
   //routing
   if(isset($_GET["create"])) {
@@ -22,6 +24,7 @@
     $t->setTemplate("products/edit");
     $t->id = purify($_GET["id"]);
     if(!$t->product = $products->getById($t->id)) die("Ce produit n'existe pas :(");
+    $t->categories = $categories->all();
   }
   elseif(isset($_GET["all"])) {
     $t->setTemplate("products/all");
