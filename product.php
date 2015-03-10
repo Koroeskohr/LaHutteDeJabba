@@ -46,7 +46,6 @@
   //execution des fonctions
   if (isset($_POST["method"])) {
     $method = $_POST["method"];
-    echo "Methode appelée : ".$_POST["method"];
     $t->setTemplate("index");
 
     switch ($method) {
