@@ -27,6 +27,25 @@
         echo "insert successful"; //debug
       }
     }
+
+    public function update($name, $id) {
+      $q = static::$db->prepare("UPDATE $this->tableName 
+        SET name=:name
+        WHERE id=:id;");
+
+      $a = array(
+        'name' => purify($name),
+        'id' => purify($id)
+        );
+
+      if ($q->execute($a)) {
+        echo "update successful"; //debug
+        header("Location: product.php?id=$id");
+      }
+      else {
+        echo "erreur lors de l'edit d'une catégorie";
+      }
+    }
   }
 
 ?>
