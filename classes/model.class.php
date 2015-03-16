@@ -1,5 +1,5 @@
 <?php 
-  require_once realpath("db.inc.php");
+  require_once __DIR__."/../db.inc.php";
 
   abstract class Model {
 

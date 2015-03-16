@@ -1,5 +1,5 @@
 <?php 
-  require_once realpath("vendor/html_purifier/HTMLPurifier.auto.php");
+  require_once "vendor/html_purifier/HTMLPurifier.auto.php";
 
   define("SALT", "Z3l1aQ0K");
 
