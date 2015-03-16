@@ -8,7 +8,7 @@
       <p>Amount available : <?php echo $this->product["amount_available"]; ?></p>
     </div>
 
-
+    
     <form action="review.php" method="post">
       <h2>Add a review</h2>
       <input type="hidden" name="product" value="<?php echo $this->product["id"]; ?>">
