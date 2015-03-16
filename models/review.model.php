@@ -1,8 +1,7 @@
 <?php 
-  require_once realpath("classes/model.class.php");
-  require_once realpath("db.inc.php");
-  require_once realpath("helpers.php");
-
+  require_once __DIR__."/../classes/model.class.php";
+  require_once __DIR__."/../db.inc.php";
+  require_once __DIR__."/../helpers.php";
 
   class Review extends Model {
     protected $tableName;
