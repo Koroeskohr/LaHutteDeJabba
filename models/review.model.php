@@ -12,11 +12,11 @@
       static::$db = $db;
     }
 
-    public function create($name, $user_id, $product_id){
+    public function create($stars, $user_id, $product_id){
       $q = static::$db->prepare("INSERT INTO $this->tableName (stars, Users_id, Products_id) VALUES (:stars, :Users_id, :Products_id);");
-      $q->bindParam(":stars", purify($stars));
-      $q->bindParam(":Users_id", purify($user_id));
-      $q->bindParam(":Products_id", purify($product_id));
+      $q->bindParam(":stars", $stars);
+      $q->bindParam(":Users_id", $user_id);
+      $q->bindParam(":Products_id", $product_id);
 
       if ($q->execute()) {
         echo "insert successful"; //debug

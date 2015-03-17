@@ -4,6 +4,8 @@
   require_once("models/category.model.php");
   require_once("models/product.model.php");
   require_once("helpers.php");
+  
+  sec_session_start();
 
   try {
     $t = new Templater("category");// A REMPLIR SELON LA PAGE
@@ -14,6 +16,10 @@
   /* Placer le code de récupération de données ici */
   $categories = new Category($db);
   $products = new Product($db);
+  
+  
+  if (login_check($db)) $t->logged = true;
+
 
   
   //routing

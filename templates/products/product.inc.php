@@ -7,7 +7,15 @@
       <p>Description : <?php echo $this->product["description"]; ?></p>
       <p>Amount available : <?php echo $this->product["amount_available"]; ?></p>
     </div>
+    
+    <div>
+      <h2>Latest reviews : </h2>
+      <?php foreach ($this->reviews as $review) : ?>
+      <p><?php echo $review["Users_id"]."  "; for($i=0;$i<$review["stars"];$i++) echo "*"; ?></p>
+      <p></p>
+      <?php endforeach; ?>
 
+    </div>
     
     <form action="review.php" method="post">
       <h2>Add a review</h2>

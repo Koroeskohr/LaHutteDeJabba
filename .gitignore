@@ -1,3 +1,4 @@
 variables.php
 *.sublime*
 MCD.png
+/nbproject/private/

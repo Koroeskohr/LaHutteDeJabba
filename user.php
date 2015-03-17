@@ -2,6 +2,9 @@
   include 'db.inc.php';
   require_once("classes/Templater.class.php");
   require_once("models/user.model.php");
+  require_once 'helpers.php';
+
+  sec_session_start();
   
   try {
     $t = new Templater("user");// A REMPLIR SELON LA PAGE
@@ -11,50 +14,50 @@
 
   /* Placer le code de récupération de données ici */
   $users = new User($db);
+  
 
+  if (login_check($db)) $t->logged = true;
+  
 
   /*
-  
-if(isset($_GET["create"])) {
-    $t->setTemplate("products/new");
-  } 
-  elseif (isset($_GET["edit"]) && isset($_GET["id"])) {
-    $t->setTemplate("products/edit");
-    $t->id = purify($_GET["id"]);
-    if(!$t->product = $products->getById($t->id)) die("Ce produit n'existe pas :(");
-    $t->categories = $categories->all();
-  }
+
   elseif(isset($_GET["all"])) {
     $t->setTemplate("products/all");
     $t->products = $products->all();
   }
-  elseif(isset($_GET["destroy"]) && isset($_GET["id"])){
-    $t->setTemplate("products/all");
-    $t->products = $products->all();
-    $products->destroy($_GET["id"]);
 
-  }
-  elseif(isset($_GET["id"])) {
-    $t->setTemplate("products/product");
-    $t->id = $_GET["id"];
-    $t->product = $products->getById($t->id);
-  }
 
    */
   if(isset($_GET["create"])) {
     $t->setTemplate("users/new");
-  } 
-  if(isset($_GET["id"])) {
+  }
+  elseif(isset($_GET["edit"])) {
+    $t->setTemplate("users/edit");
+    if ($t->logged){;
+      $t->user = $users->getById($_SESSION["user_id"]);
+    } else{
+      header("Location: /index.php?error=1");
+    }
+  }
+  elseif(isset($_GET["id"])) {
     $t->setTemplate("users/user");
     $t->id = $_GET["id"];
     $t->user = $users->getById($_GET["id"]);
-
   } 
+  
+  if(empty($_GET)){
+    if($t->logged){
+      $t->setTemplate("users/user");
+      $t->user = $users->getById($_SESSION["user_id"]);
+    } else {
+      header("Location: index.php");
+    }
+  }
+  /// TODO
 
 
   if (isset($_POST["method"])) {
     $method = $_POST["method"];
-    echo "Methode appelée : ".$_POST["method"];
     $t->setTemplate("index");
 
     switch ($method) {
@@ -63,7 +66,7 @@ if(isset($_GET["create"])) {
         header("Location: index.php");
         break;
       case 'edit':
-        $users->update($_POST["name"], $_POST["address"], $_POST["email"], $_POST["id"]);
+        $users->update($_POST["name"], $_POST["address"], $_POST["email"], $_SESSION["user_id"]);
         header("Location: index.php");
         break;
       default:

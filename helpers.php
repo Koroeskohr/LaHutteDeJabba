@@ -40,7 +40,7 @@
 
   function login($email, $password, $db) {
     // Using prepared statements means that SQL injection is not possible. 
-    if ($dbResult = $db->prepare("SELECT id, email, password FROM Users WHERE email = :email LIMIT 1")) {
+    if ($dbResult = $db->prepare("SELECT id, name, email, password FROM Users WHERE email = :email LIMIT 1")) {
       $dbResult->bindParam(':email', $email);  // Bind "$email" to parameter.
       $dbResult->execute();    // Execute the prepared query.
 
@@ -63,8 +63,9 @@
           $_SESSION['user_id'] = $user["id"];
           // XSS protection as we might print this value
           $user["email"] = preg_replace("/[^a-zA-Z0-9_\-]+/", "", $user["email"]);
-          $_SESSION['username'] = $user["email"];
-          $_SESSION['login_string'] = hash('sha256', $password . $user_browser);
+          $_SESSION['email'] = $user["email"];
+          $_SESSION['name'] = $user["name"];
+          $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
           // Login successful.
           return true;
         } else 
@@ -78,16 +79,13 @@
   }
   
 
-
-
 function login_check($db) {
   // Check if all session variables are set 
-  if (isset($_SESSION['user_id'], $_SESSION['username'], $_SESSION['login_string'])) {
- 
+  if (isset($_SESSION['user_id'], $_SESSION['name'], $_SESSION['login_string'], $_SESSION['email'])) {
     $user_id = $_SESSION['user_id'];
     $login_string = $_SESSION['login_string'];
-    $username = $_SESSION['username'];
-
+    $username = $_SESSION['name'];
+    
     // Get the user-agent string of the user.
     $user_browser = $_SERVER['HTTP_USER_AGENT'];
 
@@ -99,7 +97,7 @@ function login_check($db) {
 
       if ($result) {
         // If the user exists get variables from result.
-        $login_check = hash('sha512', $password . $user_browser);
+        $login_check = hash('sha512', $result["password"] . $user_browser);
 
         if ($login_check == $login_string) {
           // Logged In!!!! 

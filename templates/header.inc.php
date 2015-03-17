@@ -7,5 +7,8 @@
 <body>
   <header>
     <h1>IMAC Ecommerce</h1>
+    <?php if(isset($this->logged) && $this->logged) echo "Bonjour, ".$_SESSION['name']; ?>
+    
+    <?php if(isset($this->error) && $this->error) echo "Une erreur est survenue"; ?>
   </header>
   
