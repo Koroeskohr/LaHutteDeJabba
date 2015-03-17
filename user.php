@@ -10,18 +10,67 @@
   }
 
   /* Placer le code de récupération de données ici */
-  $user = new User($db);
+  $users = new User($db);
 
-  if(isset($_GET["id"])) {
-    $t->id = $_GET["id"];
-    $t->debug["getbyid"] = $user->getBy("id",$t->id);
+
+  /*
+  
+if(isset($_GET["create"])) {
+    $t->setTemplate("products/new");
+  } 
+  elseif (isset($_GET["edit"]) && isset($_GET["id"])) {
+    $t->setTemplate("products/edit");
+    $t->id = purify($_GET["id"]);
+    if(!$t->product = $products->getById($t->id)) die("Ce produit n'existe pas :(");
+    $t->categories = $categories->all();
+  }
+  elseif(isset($_GET["all"])) {
+    $t->setTemplate("products/all");
+    $t->products = $products->all();
+  }
+  elseif(isset($_GET["destroy"]) && isset($_GET["id"])){
+    $t->setTemplate("products/all");
+    $t->products = $products->all();
+    $products->destroy($_GET["id"]);
 
   }
+  elseif(isset($_GET["id"])) {
+    $t->setTemplate("products/product");
+    $t->id = $_GET["id"];
+    $t->product = $products->getById($t->id);
+  }
 
-  $t->debug["getby_name"] = $user->getByName("Victor Viale");
-  $t->debug["email"] = $user->getBy("email", "viale.victor@gmail.com");
+   */
+  if(isset($_GET["create"])) {
+    $t->setTemplate("users/new");
+  } 
+  if(isset($_GET["id"])) {
+    $t->setTemplate("users/user");
+    $t->id = $_GET["id"];
+    $t->user = $users->getById($_GET["id"]);
 
-  $t->allUsers = $user->all();
+  } 
+
+
+  if (isset($_POST["method"])) {
+    $method = $_POST["method"];
+    echo "Methode appelée : ".$_POST["method"];
+    $t->setTemplate("index");
+
+    switch ($method) {
+      case 'create':
+        $users->create($_POST["name"], $_POST["address"], $_POST["email"], $_POST["password"]);
+        header("Location: index.php");
+        break;
+      case 'edit':
+        $users->update($_POST["name"], $_POST["address"], $_POST["email"], $_POST["id"]);
+        header("Location: index.php");
+        break;
+      default:
+        break;
+    }
+  } 
+
 
 
   /* Fin du code de récupération des données */

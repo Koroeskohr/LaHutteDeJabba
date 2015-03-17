@@ -1,5 +1,5 @@
 <?php 
-  include 'db.inc.php';
+  include_once 'db.inc.php';
   require_once("classes/Templater.class.php");
   require_once("models/category.model.php");
   require_once("models/product.model.php");
@@ -24,7 +24,6 @@
     $t->setTemplate("categories/edit");
     $t->id = purify($_GET["id"]);
     if(!$t->category = $categories->getById($t->id)) throw new Exception("Cette catégorie n'existe pas");
-    ;
   }
   elseif(isset($_GET["all"])) {
     $t->setTemplate("categories/all");

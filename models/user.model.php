@@ -23,7 +23,7 @@
         'name' => purify($name),
         'address' => purify($address),
         'email' => purify($email),
-        'password' => hash_passwd($password);
+        'password' => hash_passwd($password)
         );
       if ($q->execute($a)) {
         echo "insert successful"; //debug
