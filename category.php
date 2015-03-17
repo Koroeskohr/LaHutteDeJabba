@@ -23,7 +23,8 @@
   elseif (isset($_GET["edit"]) && isset($_GET["id"])) {
     $t->setTemplate("categories/edit");
     $t->id = purify($_GET["id"]);
-    if(!$t->category = $categories->getById($t->id)) die("Cette catégorie n'existe pas :(");
+    if(!$t->category = $categories->getById($t->id)) throw new Exception("Cette catégorie n'existe pas");
+    ;
   }
   elseif(isset($_GET["all"])) {
     $t->setTemplate("categories/all");

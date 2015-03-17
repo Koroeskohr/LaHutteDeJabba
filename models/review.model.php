@@ -24,27 +24,11 @@
     }
 
     public function getByProduct($product_id){
-      $q = static::$db->prepare("SELECT * FROM Reviews WHERE Products_id=:product_id;");
-      $q->bindParam(":product_id", purify($product_id));
-
-      if ($q->execute()) {
-        echo "insert successful"; //debug
-        return $q->fetchAll(PDO::FETCH_ASSOC);
-      } else {
-        return false;
-      }
+      return $this->getBy("Products_id", $product_id);
     }
 
     public function getByUser($user_id){
-      $q = static::$db->prepare("SELECT * FROM Reviews WHERE Users_id=:user_id;");
-      $q->bindParam(":user_id", purify($user_id));
-
-      if ($q->execute()) {
-        echo "insert successful"; //debug
-        return $q->fetchAll(PDO::FETCH_ASSOC);
-      } else {
-        return false;
-      }
+      return $this->getBy("Users_id", $user_id);
     }
   }
 
