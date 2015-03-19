@@ -19,7 +19,7 @@ class Templater {
     $this->getHeader();
     $this->callTemplate($this->currentTemplate);
     $this->getFooter();
-
+    die(); //faire autrement possible ?
   }
 
   public function setTemplate($template){

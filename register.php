@@ -18,6 +18,9 @@
     $t->setTemplate("index");
     $flash = "Votre compte a bien été créé. Veuillez vérifier votre mail pour l'activer";
     $t->render($flash);
+
+
+    /// TODO : envoyer un mail pour activer le compte. rajouter une colonne en BDD activé ou non.
   }
   else {
     $t->setTemplate("index");

@@ -7,8 +7,13 @@
 <body>
   <header>
     <h1>IMAC Ecommerce</h1>
-    <?php if($this->logged) echo "Bonjour, ".$_SESSION['name']; ?>
+    <?php if($this->logged) echo "Bonjour, ".$_SESSION['name']; 
+    ?>
     
+    <?php if($this->logged) : ?>
+    <p>Votre panier : <?php echo purify(count($_SESSION["cart"]));?> objet<?php echo (count($_SESSION["cart"]) > 1 ? "s":""); ?></p>
+    <?php endif; var_dump($_SESSION["cart"]); ?>
+
     <?php if($this->flash) {
         echo "Une (Des) erreur(s) est (sont) survenue(s) : <br/>";
         foreach ($this->flash as $key => $error) {
