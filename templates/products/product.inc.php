@@ -6,6 +6,12 @@
       <p>Price : <?php echo $this->product["price"]; ?> €</p>
       <p>Description : <?php echo $this->product["description"]; ?></p>
       <p>Amount available : <?php echo $this->product["amount_available"]; ?></p>
+
+      <?php if($this->logged) {
+        echo "<a href=\"cart.php?add&id=".$this->product["id"]."\">Ajouter au panier</a>";
+      }
+      
+      ?>
     </div>
     
     <div>

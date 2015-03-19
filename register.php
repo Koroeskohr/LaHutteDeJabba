@@ -15,6 +15,9 @@
     && is_string($_POST["address"]) && !empty($_POST["address"])
   ){
     $users->create($_POST["name"], $_POST["address"], $_POST["email"], $_POST["password"]);
+    $t->setTemplate("index");
+    $flash = "Votre compte a bien été créé. Veuillez vérifier votre mail pour l'activer";
+    $t->render($flash);
   }
   else {
     $t->setTemplate("index");

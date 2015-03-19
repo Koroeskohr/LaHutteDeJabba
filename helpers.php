@@ -65,6 +65,7 @@
           $user["email"] = preg_replace("/[^a-zA-Z0-9_\-]+/", "", $user["email"]);
           $_SESSION['email'] = $user["email"];
           $_SESSION['name'] = $user["name"];
+          $_SESSION["cart"] = [];
           $_SESSION['login_string'] = hash('sha512', $password . $user_browser);
           // Login successful.
           return true;

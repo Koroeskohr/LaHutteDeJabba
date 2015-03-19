@@ -36,4 +36,5 @@
     </form>
     <?php endif; ?>
   </header>
+  <hr>
   

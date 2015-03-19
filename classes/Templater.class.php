@@ -4,10 +4,12 @@ class Templater {
   var $templatePath;
   var $flash;
   var $logged;
+  var $title;
 
-  public function Templater($model = false) {
+  public function Templater($title = "") {
     $this->templatePath = $_SERVER['DOCUMENT_ROOT']."/templates/";
     $this->logged = false;
+    $this->title = $title;
   }
 
   public function render($flash = false){
