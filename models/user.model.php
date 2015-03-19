@@ -26,7 +26,9 @@
         'password' => hash_passwd($password)
         );
       if ($q->execute($a)) {
-        echo "insert successful"; //debug
+      }
+      else {
+        return false;
       }
     }
 

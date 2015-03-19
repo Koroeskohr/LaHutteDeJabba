@@ -13,15 +13,10 @@
   
   if (login_check($db)) $t->logged = true;
 
-  if(isset($_GET["error"])) $t->error = true;
-
-
   /* Placer le code de récupération de données ici */
   $t->setTemplate("index");
 
-
   /* Fin du code de récupération des données */
-
   
   $t->render();
 ?>

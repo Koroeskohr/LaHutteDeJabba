@@ -6,8 +6,11 @@
 </head>
 <body>
   <header>
-    <h1>IMAC Ecommerce</h1>
-    <?php if($this->logged) echo "Bonjour, ".$_SESSION['name']; 
+    <h1><a href="index.php">IMAC Ecommerce</a></h1>
+    <?php if($this->logged) {
+      echo "<p>Bonjour, ".$_SESSION['name']."</p>"; 
+      echo "<a href=\"logout.php\">Logout &gt;&gt;</a>";
+    } 
     ?>
     
     <?php if($this->logged) : ?>
@@ -15,9 +18,9 @@
     <?php endif; ?>
 
     <?php if($this->flash) {
-        echo "Une (Des) erreur(s) est (sont) survenue(s) : <br/>";
+        echo "Messages : <br/>";
         foreach ($this->flash as $key => $error) {
-          echo "Error $key : $error<br/>";
+          echo "Message $key : $error<br/>";
         }
 
       }

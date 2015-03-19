@@ -6,7 +6,7 @@
   require_once 'helpers.php';
 
   sec_session_start();
-  //$url = parse_url($_SERVER["HTTP_REFERER"]);
+  $url = parse_url($_SERVER["HTTP_REFERER"]);
 
   if(!login_check($db)){
     $t = new Templater("index");
@@ -44,7 +44,7 @@
   
 
 
-  //header("Location: ".$url["path"]."?".$url["query"]);
+  header("Location: ".$url["path"]."?".$url["query"]);
 
 
  ?>

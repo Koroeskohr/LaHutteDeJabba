@@ -1,6 +1,5 @@
 <div>
   <h2>Product</h2>
-    <br/>
     <div>
       <h3>Name : <?php echo $this->product["name"]; ?></h3>
       <p>Price : <?php echo $this->product["price"]; ?> €</p>
@@ -9,10 +8,12 @@
 
       <?php if($this->logged) {
         echo "<a href=\"cart.php?add&id=".$this->product["id"]."\">Ajouter au panier</a>";
+        /// TODO : ajouter categorie + lien vers catégorie
       }
-      
       ?>
     </div>
+
+    <a href="product.php?all">&lt;&lt;Back to Products</a>
     
     <div>
       <h2>Latest reviews : </h2>

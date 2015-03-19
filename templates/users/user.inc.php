@@ -6,4 +6,6 @@
       <p><?php echo $this->user["address"]; ?></p>
     </div>
 
+    <a href="user.php?all">&lt;&lt;Back to Users</a>
+
 </div>

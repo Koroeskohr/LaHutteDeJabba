@@ -17,17 +17,12 @@
   
   if (login_check($db)) $t->logged = true;  
 
-  /*
-
-  elseif(isset($_GET["all"])) {
-    $t->setTemplate("products/all");
-    $t->products = $products->all();
-  }
-
-
-   */
   if(isset($_GET["create"])) {
     $t->setTemplate("users/new");
+  }
+  elseif(isset($_GET["all"])) {
+    $t->setTemplate("users/all");
+    $t->users = $users->all();
   }
   elseif(isset($_GET["edit"])) {
     $t->setTemplate("users/edit");
@@ -37,7 +32,7 @@
       header("Location: /index.php?error=1");
     }
   }
-  elseif(isset($_GET["id"])) {
+  elseif(filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT)) {
     $t->setTemplate("users/user");
     $t->id = $_GET["id"];
     $t->user = $users->getById($_GET["id"]);
@@ -51,7 +46,7 @@
       header("Location: index.php");
     }
   }
-  /// TODO
+  /// TODO : edit d'utilisateur
 
 
   if (isset($_POST["method"])) {

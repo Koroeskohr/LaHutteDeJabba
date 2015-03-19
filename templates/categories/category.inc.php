@@ -26,5 +26,7 @@
     <?php endforeach; ?>
   </table>
 <?php endif; ?>
+
+<a href="category.php?all">&lt;&lt;Back to Categories</a>
   
 </div>
