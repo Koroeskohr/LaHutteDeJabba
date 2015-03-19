@@ -46,7 +46,7 @@
     $products->destroy($_GET["id"]);
 
   }
-  elseif(isset($_GET["id"]) && filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT)) {
+  elseif(filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT)) {
     $t->setTemplate("products/product");
     $t->id = $_GET["id"];
     $t->product = $products->getById($t->id);

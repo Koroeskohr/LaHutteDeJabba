@@ -18,7 +18,7 @@
     <?php foreach($this->products as $product) :?>
       <tr>
         <td><?php echo $product["id"]; ?></td>
-        <td><?php echo $product["name"]; ?></td>
+        <td><a href="product.php?id=<?php echo $product["id"]; ?>"><?php echo $product["name"]; ?></a></td>
         <td><?php echo $product["description"]; ?></td>
         <td><?php echo $product["price"]; ?></td>
         <td><?php echo $product["amount_available"]; ?></td>
