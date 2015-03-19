@@ -31,6 +31,11 @@
     }
 
     /// TODO : edit function
+    
+    public function getNameById($id){
+      $user = $this->getById($id);
+      return $user["name"];
+    }
   }
 
 ?>

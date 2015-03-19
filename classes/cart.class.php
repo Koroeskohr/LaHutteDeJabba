@@ -1,8 +1,5 @@
 <?php 
 
-/**
-* 
-*/
 class Cart
 {
   public function Cart(){}

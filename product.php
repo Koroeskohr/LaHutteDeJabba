@@ -4,6 +4,7 @@
   require_once("models/product.model.php");
   require_once("models/category.model.php");
   require_once("models/review.model.php");
+  require_once("models/user.model.php");
 
   require_once("helpers.php");
   
@@ -22,14 +23,14 @@
   $products = new Product($db);
   $categories = new Category($db);
   $reviews = new Review($db);
+  $users = new User($db);
 
   //routing
   if(isset($_GET["create"])) {
     $t->setTemplate("products/new");
     $t->categories = $categories->all();
-
   } 
-  elseif (isset($_GET["edit"]) && isset($_GET["id"])) {
+  elseif (isset($_GET["edit"]) && filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT)) {
     $t->setTemplate("products/edit");
     $t->id = purify($_GET["id"]);
     if(!$t->product = $products->getById($t->id)) die("Ce produit n'existe pas :(");
@@ -39,17 +40,18 @@
     $t->setTemplate("products/all");
     $t->products = $products->all();
   }
-  elseif(isset($_GET["destroy"]) && isset($_GET["id"])){
+  elseif(isset($_GET["destroy"]) && filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT)){
     $t->setTemplate("products/all");
     $t->products = $products->all();
     $products->destroy($_GET["id"]);
 
   }
-  elseif(isset($_GET["id"])) {
+  elseif(isset($_GET["id"]) && filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT)) {
     $t->setTemplate("products/product");
     $t->id = $_GET["id"];
     $t->product = $products->getById($t->id);
     $t->reviews = $reviews->getByProduct($t->id);
+
   }
 
 

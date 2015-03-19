@@ -17,7 +17,7 @@
     <div>
       <h2>Latest reviews : </h2>
       <?php foreach ($this->reviews as $review) : ?>
-      <p><?php echo $review["Users_id"]."  "; for($i=0;$i<$review["stars"];$i++) echo "*"; ?></p>
+      <p><?php echo $review["name"]."  "; for($i=0;$i<$review["stars"];$i++) echo "*"; ?></p>
       <p></p>
       <?php endforeach; ?>
 

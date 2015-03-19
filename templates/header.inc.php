@@ -11,8 +11,8 @@
     ?>
     
     <?php if($this->logged) : ?>
-    <p>Votre panier : <?php echo purify(count($_SESSION["cart"]));?> objet<?php echo (count($_SESSION["cart"]) > 1 ? "s":""); ?></p>
-    <?php endif; var_dump($_SESSION["cart"]); ?>
+    <p><a href="cart.php?list">Votre panier</a> : <?php echo purify(count($_SESSION["cart"]));?> objet<?php echo (count($_SESSION["cart"]) > 1 ? "s":""); ?></p>
+    <?php endif; ?>
 
     <?php if($this->flash) {
         echo "Une (Des) erreur(s) est (sont) survenue(s) : <br/>";
