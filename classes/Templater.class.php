@@ -1,24 +1,23 @@
 <?php 
-
 class Templater {
-  var $currentModel;
   var $currentTemplate;
-
   var $templatePath;
+  var $flash;
+  var $logged;
 
-  public function Templater($currentModel) {
-    $this->currentModel = $currentModel;
+  public function Templater($model = false) {
     $this->templatePath = $_SERVER['DOCUMENT_ROOT']."/templates/";
-
-    $this->errorHandler();
+    $this->logged = false;
   }
 
-  public function render(){
-    if(!isset($this->currentTemplate)) 
-      throw new Exception("No template has been selected");
+  public function render($flash = false){
+    $this->errorHandler();
+
+    $this->flash = $flash;
     $this->getHeader();
     $this->callTemplate($this->currentTemplate);
     $this->getFooter();
+
   }
 
   public function setTemplate($template){
@@ -38,8 +37,10 @@ class Templater {
   }
 
   private function errorHandler(){
-    if (!is_file($this->templatePath.$this->currentModel.".inc.php")) 
+    if (!is_file($this->templatePath.$this->currentTemplate.".inc.php"))
       throw new Exception("Template doesnt exist");
+    elseif(!isset($this->currentTemplate)) 
+      throw new Exception("No template has been selected");
     else return true;
   }
 

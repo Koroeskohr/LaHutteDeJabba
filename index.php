@@ -11,7 +11,8 @@
     echo "Error : ".$e->getMessage();
   }
   
-  if(login_check($db)) $t->logged = true;
+  if (login_check($db)) $t->logged = true;
+
   if(isset($_GET["error"])) $t->error = true;
 
 

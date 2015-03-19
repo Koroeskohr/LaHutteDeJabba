@@ -17,7 +17,6 @@
   $categories = new Category($db);
   $products = new Product($db);
   
-  
   if (login_check($db)) $t->logged = true;
 
 

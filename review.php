@@ -7,6 +7,7 @@
 
   $reviews = new Review($db);
 
+
   /* Placer le code de récupération de données ici */
   if(isset($_POST["stars"], $_POST["product"]) && login_check($db)) {
     $reviews->create($_POST["stars"], $_SESSION["user_id"], $_POST["product"]);

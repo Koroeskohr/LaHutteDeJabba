@@ -15,9 +15,7 @@
   /* Placer le code de récupération de données ici */
   $users = new User($db);
   
-
-  if (login_check($db)) $t->logged = true;
-  
+  if (login_check($db)) $t->logged = true;  
 
   /*
 
@@ -61,10 +59,6 @@
     $t->setTemplate("index");
 
     switch ($method) {
-      case 'create':
-        $users->create($_POST["name"], $_POST["address"], $_POST["email"], $_POST["password"]);
-        header("Location: index.php");
-        break;
       case 'edit':
         $users->update($_POST["name"], $_POST["address"], $_POST["email"], $_SESSION["user_id"]);
         header("Location: index.php");
