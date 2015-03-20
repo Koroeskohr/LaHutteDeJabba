@@ -14,7 +14,9 @@
     ?>
     
     <?php if($this->logged) : ?>
-    <p><a href="cart.php?list">Votre panier</a> : <?php echo purify(count($_SESSION["cart"]));?> objet<?php echo (count($_SESSION["cart"]) > 1 ? "s":""); ?></p>
+    <p><a href="cart.php?list">Mon panier</a> : <?php echo purify(count($_SESSION["cart"]));?> objet<?php echo (count($_SESSION["cart"]) > 1 ? "s":""); ?></p>
+    <p><a href="user.php">Mon profil</a></p>  
+  
     <?php endif; ?>
 
     <?php if($this->flash) {
@@ -22,7 +24,6 @@
         foreach ($this->flash as $key => $error) {
           echo "Message $key : $error<br/>";
         }
-
       }
     ?>
 

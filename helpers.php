@@ -35,7 +35,7 @@
         $httponly);
     // Sets the session name to the one set above.
     session_name($session_name);
-    session_start();            // Start the PHP session 
+    session_start(); // Start the PHP session 
     if(!isset($_SESSION["last_regen"])) $_SESSION["last_regen"] = 0;
     if ($_SESSION["last_regen"] + 10 < time()) {
       session_regenerate_id(true); // regenerated the session, delete the old one.

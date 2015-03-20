@@ -22,12 +22,14 @@
       $q->bindParam(":Products_id", $product_id);
 
       if ($q->execute()) {
-        echo "insert successful"; //debug
+        return true;
+      }
+      else {
+        return false;
       }
     }
 
     public function getByProduct($product_id){
-      //$reviews = $this->getBy("Products_id", $product_id);
       $q = static::$db->prepare("SELECT Reviews.id, Reviews.stars, Reviews.Users_id, Users.name 
         FROM $this->tableName , Users
         WHERE Reviews.Products_id=:id 

@@ -33,6 +33,24 @@
     }
 
     /// TODO : edit function
+    public function update($address, $name, $id) {
+      $q = static::$db->prepare("UPDATE $this->tableName 
+        SET address=:address, name=:name, password=:password
+        WHERE id=:id;");
+
+      $a = array(
+        'name' => purify($name),
+        'address' => purify($address),
+        'id' => purify($id)
+      );
+
+      if ($q->execute($a)) {
+        header("Location: user.php?id=$id");
+      }
+      else {
+        return false;
+      }
+    }
     
     public function getNameById($id){
       $user = $this->getById($id);

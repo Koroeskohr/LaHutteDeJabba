@@ -29,7 +29,9 @@
     if ($t->logged){;
       $t->user = $users->getById($_SESSION["user_id"]);
     } else{
-      header("Location: /index.php?error=1");
+      $t->setTemplate("index");
+      $error = ["You must login to access your personal info"];
+      $t->render($error);
     }
   }
   elseif(filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT)) {
@@ -56,7 +58,6 @@
     switch ($method) {
       case 'edit':
         $users->update($_POST["name"], $_POST["address"], $_POST["email"], $_SESSION["user_id"]);
-        header("Location: index.php");
         break;
       default:
         break;

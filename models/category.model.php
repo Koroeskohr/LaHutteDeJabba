@@ -23,7 +23,7 @@
       $q = static::$db->prepare("INSERT INTO $this->tableName (name) VALUES (:name);");
       $q->bindParam(":name", purify($name));
       if ($q->execute()) {
-        echo "insert successful"; //debug
+        return true;
       }
     }
 
@@ -38,11 +38,10 @@
         );
 
       if ($q->execute($a)) {
-        echo "update successful"; //debug
-        header("Location: product.php?id=$id");
+        header("Location: category.php?id=$id");
       }
       else {
-        echo "erreur lors de l'edit d'une catégorie";
+        return false;
       }
     }
   }

@@ -29,10 +29,10 @@
         'price' => purify($price)
         );
       if ($q->execute($a)) {
-        echo "insert successful"; //debug
+        return true;
       }
       else {
-        echo "erreur lors de l'insertion d'un produit";
+        return false;
       }
     }
 
@@ -51,11 +51,10 @@
         );
 
       if ($q->execute($a)) {
-        echo "update successful"; //debug
-        //header("Location: product.php?id=$id");
+        header("Location: product.php?id=$id");
       }
       else {
-        echo "erreur lors de l'edit d'un produit";
+        return false;
       }
     }
   }
