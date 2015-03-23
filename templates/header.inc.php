@@ -35,14 +35,7 @@
       <input type="submit">
     </form>
 
-    <form action="register.php" method="post">
-      <p>S'inscrire :</p>
-      <input type="text" name="email" placeholder="email">
-      <input type="password" name="password" placeholder="password">
-      <input type="text" name="name" placeholder="name">
-      <input type="text" name="address" placeholder="address">
-      <input type="submit">
-    </form>
+    <a href="user.php?create">S'inscrire</a>
     <?php endif; ?>
   </header>
   <hr>

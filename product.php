@@ -51,7 +51,10 @@
     $t->id = $_GET["id"];
     $t->product = $products->getById($t->id);
     $t->reviews = $reviews->getByProduct($t->id);
-
+  }
+  else{
+    $t->setTemplate("products/all");
+    $t->products = $products->all();
   }
 
 

@@ -18,7 +18,10 @@
   if (login_check($db)) $t->logged = true;  
 
   if(isset($_GET["create"])) {
+    if($t->logged) header("Location: index.php");
     $t->setTemplate("users/new");
+    $t->captcha[0] = rand(1,9);
+    $t->captcha[1] = rand(1,9);
   }
   elseif(isset($_GET["all"])) {
     $t->setTemplate("users/all");
@@ -48,7 +51,6 @@
       header("Location: index.php");
     }
   }
-  /// TODO : edit d'utilisateur
 
 
   if (isset($_POST["method"])) {

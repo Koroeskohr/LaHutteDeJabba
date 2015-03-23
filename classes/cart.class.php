@@ -22,8 +22,6 @@ class Cart
 
     return $items;
   }
-
-
 }
 
  ?>

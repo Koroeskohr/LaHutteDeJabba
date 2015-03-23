@@ -18,18 +18,25 @@
     }
 
     public function create($name, $address, $email, $password){
-      $q = static::$db->prepare("INSERT INTO $this->tableName (name, address, email, password) VALUES (:name, :address, :email, :password);");
-      $a = array(
-        'name' => purify($name),
-        'address' => purify($address),
-        'email' => purify($email),
-        'password' => hash_passwd($password)
-        );
-      if ($q->execute($a)) {
+      $check = static::$db->prepare("SELECT * FROM $this->tableName WHERE email=:email;");
+      $check->bindParam("email", $email);
+      if(!$check->fetch()){
+        $q = static::$db->prepare("INSERT INTO $this->tableName (name, address, email, password, activated) VALUES (:name, :address, :email, :password, 0);");
+        $a = array(
+          'name' => purify($name),
+          'address' => purify($address),
+          'email' => purify($email),
+          'password' => hash_passwd($password)
+          );
+        if ($q->execute($a)) {
+          //sendActivationEmail($email, $name, static::$db->lastInsertId());
+          return true;
+        }
+        else {
+          return false;
+        }
       }
-      else {
-        return false;
-      }
+      return false;
     }
 
     /// TODO : edit function
@@ -55,6 +62,13 @@
     public function getNameById($id){
       $user = $this->getById($id);
       return $user["name"];
+    }
+
+    public function setActivated($id){
+      $q = static::$db->prepare("UPDATE Users SET activated=1 WHERE id=:id");
+      $q->bindParam("id",$id);
+
+      $q->execute();
     }
   }
 

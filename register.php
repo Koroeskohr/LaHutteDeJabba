@@ -13,14 +13,17 @@
     && filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) && !empty($_POST["email"])
     && is_string($_POST["name"]) && !empty($_POST["name"])
     && is_string($_POST["address"]) && !empty($_POST["address"])
+    && (int)$_POST["captcha"] == (int)$_POST["captcha1"] + (int)$_POST["captcha2"]
   ){
-    $users->create($_POST["name"], $_POST["address"], $_POST["email"], $_POST["password"]);
     $t->setTemplate("index");
-    $flash = ["Votre compte a bien été créé. Veuillez vérifier votre mail pour l'activer"];
+    if($users->create($_POST["name"], $_POST["address"], $_POST["email"], $_POST["password"])){
+      $flash = ["Account created. Verify your account by checking your email"];
+    } else {
+      $flash = ["Email already used"];
+    }
+    
     $t->render($flash);
 
-
-    /// TODO : envoyer un mail pour activer le compte. rajouter une colonne en BDD activé ou non.
   }
   else {
     $t->setTemplate("index");
