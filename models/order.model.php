@@ -28,20 +28,19 @@ class Order extends Model
   public function create(){
     try {
       static::$db->beginTransaction();
-      $q = static::$db->prepare("INSERT INTO $this->tableName (Users_id, created_at, packed, sent) VALUES (:user_id, :created_at, 0, 0);");
-      $a = array(
-        'user_id' => $_SESSION["user_id"],
-        'created_at' => time()
-      );
-      $q->execute($a);
+        $q = static::$db->prepare("INSERT INTO $this->tableName (Users_id, created_at, packed, sent) VALUES (:user_id, :created_at, 0, 0);");
+        $a = array(
+          'user_id' => $_SESSION["user_id"],
+          'created_at' => time()
+        );
+        $q->execute($a);
 
-      $cart = Cart::listElements();
-      $order_id = static::$db->lastInsertId();
+        $cart = Cart::listElements();
+        $order_id = static::$db->lastInsertId();
 
-      foreach ($cart as $product => $qty) {
-        static::$db->exec("INSERT INTO $this->joinTable (Orders_id, Products_id, amount) VALUES ($order_id, $product, $qty);");
-      }
-
+        foreach ($cart as $product => $qty) {
+          static::$db->exec("INSERT INTO $this->joinTable (Orders_id, Products_id, amount) VALUES ($order_id, $product, $qty);");
+        }
       static::$db->commit();
     } 
     catch(Exception $e) {
@@ -53,9 +52,7 @@ class Order extends Model
   }
 
   public function update($packed, $sent, $order_id) {
-    $q = static::$db->prepare("UPDATE $this->tableName 
-      SET packed=:packed, sent=:sent
-      WHERE id=:id;");
+    $q = static::$db->prepare("UPDATE $this->tableName SET packed=:packed, sent=:sent WHERE id=:id;");
 
     $a = array(
       'packed' => $packed,

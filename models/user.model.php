@@ -39,7 +39,6 @@
       return false;
     }
 
-    /// TODO : edit function
     public function update($address, $name, $id) {
       $q = static::$db->prepare("UPDATE $this->tableName 
         SET address=:address, name=:name, password=:password

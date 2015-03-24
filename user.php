@@ -1,7 +1,7 @@
 <?php 
-  include 'db.inc.php';
-  require_once("classes/Templater.class.php");
-  require_once("models/user.model.php");
+  require_once 'db.inc.php';
+  require_once "classes/Templater.class.php";
+  require_once "models/user.model.php";
   require_once 'helpers.php';
 
   sec_session_start();

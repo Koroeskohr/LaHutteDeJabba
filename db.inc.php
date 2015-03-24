@@ -1,5 +1,5 @@
 <?php
-require 'variables.php';
+require_once 'variables.php';
 
 /*
 define DB_IP, DB_NAME, DB_USER, DB_PASS

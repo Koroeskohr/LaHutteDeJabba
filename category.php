@@ -1,5 +1,5 @@
 <?php 
-  include_once 'db.inc.php';
+  require_once 'db.inc.php';
   require_once("classes/Templater.class.php");
   require_once("models/category.model.php");
   require_once("models/product.model.php");
