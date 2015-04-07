@@ -30,7 +30,7 @@ class Order extends Model
       static::$db->beginTransaction();
         $q = static::$db->prepare("INSERT INTO $this->tableName (Users_id, created_at, packed, sent) VALUES (:user_id, :created_at, 0, 0);");
         $a = array(
-          'user_id' => $_SESSION["user_id"],
+          'user_id' => purify($_SESSION["user_id"]),
           'created_at' => time()
         );
         $q->execute($a);

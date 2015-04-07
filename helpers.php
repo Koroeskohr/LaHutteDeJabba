@@ -18,13 +18,13 @@
   }
 
   /**
-   * Sert à purifier les input en bdd. Utilise htmlspecialchars, stripslashes
+   * Sert à purifier les input en bdd.
    * @param  string $html Chaine rentrée
    * @return string       Chaine purifiée
    */
   function purify($html) {
     $config = HTMLPurifier_Config::createDefault();
-    $purifier = new HTMLPurifier($config);
+    $purifier = new HTMLPurifier($config); //Utilise htmlspecialchars, stripslashes
     return $purifier->purify($html); 
   }
 

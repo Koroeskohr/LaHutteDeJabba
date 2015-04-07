@@ -37,6 +37,12 @@
 
     <a href="user.php?create">S'inscrire</a>
     <?php endif; ?>
+
+    <form action="product.php" method="get">
+      <input type="text" name="q" placeholder="Tapez votre recherche">
+      <input type="hidden" name="search">
+      <input type="submit" value="Rechercher">
+    </form>
   </header>
   <hr>
   

@@ -8,27 +8,32 @@
 
       <?php if($this->logged) {
         echo "<a href=\"cart.php?add&id=".$this->product["id"]."\">Ajouter au panier</a>";
-        /// TODO : ajouter categorie + lien vers catégorie
       }
       ?>
     </div>
 
-    <a href="product.php?all">&lt;&lt;Back to Products</a>
+    <a href="product.php?all">&lt;&lt; Back to Products</a>
     
+    <?php if($this->reviews): ?>
     <div>
       <h2>Latest reviews : </h2>
       <?php foreach ($this->reviews as $review) : ?>
       <p><a href="user.php?id=<?php echo $review["Users_id"]; ?>"><?php echo $review["name"]."</a>  "; for($i=0;$i<$review["stars"];$i++) echo "*"; ?></p>
-      <p></p>
+      <p><?php echo $review["commentary"]; ?></p>
       <?php endforeach; ?>
 
     </div>
+    <?php endif; ?>
     
+    <?php if($this->logged && !$this->hasCommented): ?>
     <form action="review.php" method="post">
       <h2>Add a review</h2>
       <input type="hidden" name="product" value="<?php echo $this->product["id"]; ?>">
       <input type="number" name="stars" min="0" max="5" value="5">
+      <br>
+      <textarea name="commentary" placeholder="Commentaire"></textarea>
       <input type="submit">
     </form>
+  <?php endif; ?>
   
 </div>

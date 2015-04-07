@@ -3,7 +3,6 @@
   require_once __DIR__.'/../helpers.php';
 
   abstract class Model {
-
     protected $tableName = null;
     protected static $db;
 
@@ -13,7 +12,7 @@
 
     public function getById($id) {
       $q = static::$db->prepare("SELECT * FROM $this->tableName WHERE id=:id;");
-      $q->bindParam(":id", purify($id), PDO::PARAM_INT);
+      $q->bindParam(":id", $id, PDO::PARAM_INT);
       
       if ($q->execute()) return $q->fetch(PDO::FETCH_ASSOC);
       else return false;
@@ -22,14 +21,14 @@
     public function getBy($columnName, $arg){
       if ($columnName == "id") return $this->getById($arg);
       $q = static::$db->prepare("SELECT * FROM $this->tableName WHERE $columnName=:arg;");
-      $q->bindParam(":arg", purify($arg));
+      $q->bindParam(":arg", $arg);
       if($q->execute()) return $q->fetchAll(PDO::FETCH_ASSOC);
       else return false;
     }
 
     public function destroy($id){
       $q = static::$db->prepare("DELETE FROM $this->tableName WHERE id=:id");
-      $q->bindParam(":id", purify($id));
+      $q->bindParam(":id", $id);
       if($q->execute()) return true;
       else return false;
     }

@@ -17,7 +17,7 @@
     && is_string($_GET["key"]) && !empty($_GET["key"])
   ){
     $account = $users->getById($_GET["id"]);
-    $key = hash("sha256", SALT.$account["name"]);
+    $key = hash("sha256", SALT.$account["name"]); //pas tres bien
     if($key = $_GET["key"]){
       $users->setActivated($_GET["id"]);
       $t->setTemplate("index");

@@ -44,13 +44,18 @@
     $t->setTemplate("products/all");
     $t->products = $products->all();
     $products->destroy($_GET["id"]);
-
+  }
+  elseif (isset($_GET["search"]) && isset($_GET["q"])) {
+    $t->setTemplate("products/search");
+    $t->results = $products->search($_GET["q"]);
   }
   elseif(filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT)) {
     $t->setTemplate("products/product");
     $t->id = $_GET["id"];
     $t->product = $products->getById($t->id);
     $t->reviews = $reviews->getByProduct($t->id);
+
+    if($t->logged) $t->hasCommented = $reviews->hasUserCommented($t->id, $_SESSION["user_id"]);
   }
   else{
     $t->setTemplate("products/all");

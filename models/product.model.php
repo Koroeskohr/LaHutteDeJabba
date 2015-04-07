@@ -11,10 +11,13 @@
       $this->tableName = "Products";
       static::$db = $db;
     }
-
+    
     public function search($search){
-      $q = static::$db->prepare('SELECT * FROM '.$this->tableName.' WHERE name LIKE %:search%;');
-      $q->bindParam(":search", $search, PDO::PARAM_STRING);
+      $q = static::$db->prepare("SELECT * FROM $this->tableName 
+                                WHERE name LIKE CONCAT('%', :search, '%') 
+                                OR description LIKE CONCAT('%', :search, '%');");
+      // %:search%
+      $q->bindParam(":search", $search);
       $q->execute();
       return $q->fetchAll(PDO::FETCH_ASSOC);
     }

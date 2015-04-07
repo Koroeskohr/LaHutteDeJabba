@@ -1,6 +1,6 @@
 <?php 
   require_once 'db.inc.php';
-  require_once("classes/Templater.class.php");
+  require_once "classes/Templater.class.php";
   require_once 'helpers.php';
   
   sec_session_start();
@@ -11,6 +11,12 @@
     echo "Error : ".$e->getMessage();
   }
   
+  //MISSION 2
+  //affichage panier
+  //commentaire d'un utilisateur sur un produit
+  //note du produit
+
+
   if (login_check($db)) $t->logged = true;
 
   /* Placer le code de récupération de données ici */
