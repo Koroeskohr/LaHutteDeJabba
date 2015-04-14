@@ -1,2 +1,0 @@
-créer un script de génération de contenu population de la bdd
-recherche
